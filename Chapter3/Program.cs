@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using System.Text;
 
 namespace Chapter3
 {
-    static class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -25,8 +26,13 @@ namespace Chapter3
             Console.WriteLine(hashA.SequenceEqual(hashC));
 
             Console.ReadLine();
+        }
 
-
+        [FileIOPermission(SecurityAction.Demand,
+            AllLocalFiles = FileIOPermissionAccess.Read)]
+        public void DeclarativeCAS()
+        {
+            // Method body
         }
     }
 }
