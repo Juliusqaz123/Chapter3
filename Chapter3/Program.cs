@@ -2,7 +2,7 @@
 
 namespace Chapter3
 {
-    public static class Program
+    public class Program
     {
         public static void Main()
         {
@@ -14,6 +14,19 @@ namespace Chapter3
                 Console.WriteLine("Unreachable code");
             }
 #pragma warning restore
+            Console.ReadLine();
+        }
+
+        public void SomeMethod()
+        {
+#if DEBUG
+            Log("Step1");
+#endif
+        }
+
+        private static void Log(string message)
+        {
+            Console.WriteLine("message");
         }
     }
 }
