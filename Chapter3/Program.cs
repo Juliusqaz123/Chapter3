@@ -1,42 +1,20 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Security;
+using System.Threading;
 
 namespace Chapter3
 {
-    static class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            using (SecureString ss = new SecureString())
-            {
-                Console.Write("Please enter password: ");
-                while (true)
-                {
-                    ConsoleKeyInfo cki = Console.ReadKey(true);
-                    if (cki.Key == ConsoleKey.Enter) break;
-
-                    ss.AppendChar(cki.KeyChar);
-                    Console.Write("*");
-                }
-                ss.MakeReadOnly();
-            }
-
+            Timer t = new Timer(TimerCallback, null, 0, 2000);
             Console.ReadLine();
         }
 
-        public static void ConvertToUnsecureString(SecureString securePassword)
+        private static void TimerCallback(object o)
         {
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-                Console.WriteLine(Marshal.PtrToStringUni(unmanagedString));
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
+            Console.WriteLine("In TimerCallback: " + DateTime.Now);
+            GC.Collect();
         }
     }
 }
