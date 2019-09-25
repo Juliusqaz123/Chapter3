@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 
 namespace Chapter3
 {
-    public static class Program
+    public  class Program
     {
         public static void Main()
         {
-            Timer t = new Timer(TimerCallback, null, 0, 2000);
-            Console.ReadLine();
+
         }
 
-        private static void TimerCallback(object o)
+        public Assembly LoadAssembly<T>()
         {
-            Console.WriteLine("In TimerCallback: " + DateTime.Now);
-            GC.Collect();
+#if !WINRT
+            Assembly assembly = typeof(T).Assembly;
+#else
+            Assembly asembly = typeof(T).GetTypeInfo().Assembly;
+#endif
+            return assembly;
         }
     }
 }
