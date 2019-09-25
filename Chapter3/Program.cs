@@ -8,17 +8,18 @@ namespace Chapter3
     {
         static void Main(string[] args)
         {
-            FileIOPermission f = new FileIOPermission(PermissionState.None)
+            using (SecureString ss = new SecureString())
             {
-                AllLocalFiles = FileIOPermissionAccess.Read
-            };
-            try
-            {
-                f.Demand();
-            }
-            catch (SecurityException s)
-            {
-                Console.WriteLine(s.Message);
+                Console.Write("Please enter password: ");
+                while (true)
+                {
+                    ConsoleKeyInfo cki = Console.ReadKey(true);
+                    if (cki.Key == ConsoleKey.Enter) break;
+
+                    ss.AppendChar(cki.KeyChar);
+                    Console.Write("*");
+                }
+                ss.MakeReadOnly();
             }
 
             Console.ReadLine();
