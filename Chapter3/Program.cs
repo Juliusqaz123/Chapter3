@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Chapter3
 {
@@ -24,6 +25,7 @@ namespace Chapter3
 #endif
         }
 
+        [Conditional("DEBUG")]
         private static void Log(string message)
         {
             Console.WriteLine("message");
