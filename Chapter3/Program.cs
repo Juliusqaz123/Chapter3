@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Security;
-using System.Security.Permissions;
 
 namespace Chapter3
 {
@@ -23,6 +23,20 @@ namespace Chapter3
             }
 
             Console.ReadLine();
+        }
+
+        public static void ConvertToUnsecureString(SecureString securePassword)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+                Console.WriteLine(Marshal.PtrToStringUni(unmanagedString));
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
         }
     }
 }
