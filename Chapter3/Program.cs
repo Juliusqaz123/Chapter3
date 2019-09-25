@@ -6,13 +6,14 @@ namespace Chapter3
     {
         public static void Main()
         {
-#pragma warning disable
+#pragma warning disable 0162, 0168
+            int i;
+#pragma warning restore 0162
             while (false)
             {
                 Console.WriteLine("Unreachable code");
             }
 #pragma warning restore
-            Console.ReadLine();
         }
     }
 }
