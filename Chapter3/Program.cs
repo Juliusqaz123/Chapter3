@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Threading;
 
 namespace Chapter3
 {
-    public class Program
+    public  class Program
     {
         public static void Main()
         {
-            //-
+            Timer t = new Timer(TimerCallback, null, 0, 2000);
+            Console.ReadLine();
         }
 
-        public void SomeMethod()
+        private static void TimerCallback(Object o)
+        {
+            Console.WriteLine("In TimerCallBack: " + DateTime.Now);
+            GC.Collect();
+        }
+
+        public void DebugDirective()
         {
 #if DEBUG
-            Log("Step1");
+            Console.WriteLine("Debug mode");
+#else
+            Console.WriteLine("Not debug");
 #endif
-        }
-
-        [Conditional("DEBUG")]
-        private static void Log(string message)
-        {
-            Console.WriteLine("message");
         }
     }
 }
