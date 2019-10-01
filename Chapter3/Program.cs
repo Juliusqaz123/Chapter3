@@ -10,27 +10,21 @@ namespace Chapter3
 {
     public  class Program
     {
-        /*
         public static void Main()
         {
-            Stream outputFile = File.Create("tracefile.txt");
-            TextWriterTraceListener textListener =
-                new TextWriterTraceListener(outputFile);
+            EventLog log = new EventLog("MyNewLog");
 
-            TraceSource traceSource = new TraceSource("myTraceSource",
-                SourceLevels.All);
-
-            traceSource.Listeners.Clear();
-            traceSource.Listeners.Add(textListener);
-
-            traceSource.TraceInformation("Trace output");
-
-            traceSource.Flush();
-            traceSource.Close();
+            Console.WriteLine("Total entries: " + log.Entries.Count);
+            EventLogEntry last = log.Entries[log.Entries.Count - 1];
+            Console.WriteLine("Index:   " + last.Index);
+            Console.WriteLine("Source:  " + last.Source);
+            Console.WriteLine("Type:    " + last.EntryType);
+            Console.WriteLine("Time:    " + last.TimeWritten);
+            Console.WriteLine("Message: " + last.Message);
 
             Console.ReadLine();
         }
-        */
+
         private static void TimerCallback(Object o)
         {
             Console.WriteLine("In TimerCallBack: " + DateTime.Now);
