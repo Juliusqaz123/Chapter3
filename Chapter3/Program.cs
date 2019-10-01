@@ -45,5 +45,18 @@ namespace Chapter3
 #endif
             return assembly;
         }
+
+        public void SomeMethod()
+        {
+#if DEBUG
+            Log("Step1");
+#endif
+        }
+
+        private static void Log(string message)
+        {
+            Console.WriteLine("message");
+        }
+
     }
 }
