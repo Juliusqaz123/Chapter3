@@ -11,8 +11,11 @@ namespace Chapter3
     {
         public static void Main()
         {
-            Timer t = new Timer(TimerCallback, null, 0, 2000);
-            Console.ReadLine();
+            Debug.WriteLine("Starting application");
+            Debug.Indent();
+            int i = 1 + 2;
+            Debug.Assert(i == 3);
+            Debug.WriteLine(i > 0, "is greater than 0");
         }
 
         private static void TimerCallback(Object o)
