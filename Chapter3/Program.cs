@@ -1,6 +1,7 @@
 ﻿#define MySymbol
 
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 
@@ -53,6 +54,7 @@ namespace Chapter3
 #endif
         }
 
+        [Conditional("DEBUG")]
         private static void Log(string message)
         {
             Console.WriteLine("message");
