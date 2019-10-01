@@ -10,6 +10,7 @@ namespace Chapter3
 {
     public  class Program
     {
+        /*
         public static void Main()
         {
             EventLog log = new EventLog("MyNewLog");
@@ -24,7 +25,7 @@ namespace Chapter3
 
             Console.ReadLine();
         }
-
+        */
         private static void TimerCallback(Object o)
         {
             Console.WriteLine("In TimerCallBack: " + DateTime.Now);

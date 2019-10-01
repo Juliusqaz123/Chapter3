@@ -5,6 +5,7 @@ namespace Chapter3
 {
     class MySample
     {
+        /*
         public static void Main()
         {
             if (!EventLog.SourceExists("MySource"))
@@ -21,5 +22,6 @@ namespace Chapter3
             myLog.WriteEntry("Log event!");
             
         }
+        */
     }
 }
