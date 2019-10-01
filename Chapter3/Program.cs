@@ -10,6 +10,7 @@ namespace Chapter3
 {
     public  class Program
     {
+        /*
         public static void Main()
         {
             Stream outputFile = File.Create("tracefile.txt");
@@ -29,7 +30,7 @@ namespace Chapter3
 
             Console.ReadLine();
         }
-
+        */
         private static void TimerCallback(Object o)
         {
             Console.WriteLine("In TimerCallBack: " + DateTime.Now);
