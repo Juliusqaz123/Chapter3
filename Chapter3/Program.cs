@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define MySymbol
+
+using System;
 using System.Threading;
 
 namespace Chapter3
@@ -23,6 +25,13 @@ namespace Chapter3
             Console.WriteLine("Debug mode");
 #else
             Console.WriteLine("Not debug");
+#endif
+        }
+
+        public void UseCustomSymbol()
+        {
+#if MySymbol
+            Console.WriteLine("Custom symbol is defined");
 #endif
         }
     }
