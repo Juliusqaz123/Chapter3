@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 
@@ -11,16 +12,21 @@ namespace Chapter3
     {
         public static void Main()
         {
+            Stream outputFile = File.Create("tracefile.txt");
+            TextWriterTraceListener textListener =
+                new TextWriterTraceListener(outputFile);
+
             TraceSource traceSource = new TraceSource("myTraceSource",
                 SourceLevels.All);
 
-            traceSource.TraceInformation("Tracing application..");
-            traceSource.TraceEvent(TraceEventType.Critical, 0, "Critical trace");
-            traceSource.TraceData(TraceEventType.Information, 1,
-                new object[] { "a", "b", "c" });
+            traceSource.Listeners.Clear();
+            traceSource.Listeners.Add(textListener);
+
+            traceSource.TraceInformation("Trace output");
 
             traceSource.Flush();
             traceSource.Close();
+
             Console.ReadLine();
         }
 
